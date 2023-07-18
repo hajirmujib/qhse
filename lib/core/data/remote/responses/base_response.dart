@@ -6,7 +6,6 @@ part 'base_response.g.dart';
 /// {
 ///   "status": <bool>,
 ///   "code": <int>,
-///   "message": <string>,
 ///   "data": <T>
 /// }
 ///
