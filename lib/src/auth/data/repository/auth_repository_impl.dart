@@ -13,7 +13,8 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   FutureOrError<BaseResponse<AuthUserResponse>> login(
-      AuthLoginRequest request) {
+    AuthLoginRequest request,
+  ) {
     return callOrError(() => _authService.login(request));
   }
 }

@@ -32,7 +32,7 @@ class CookieInterceptor extends Interceptor {
 
       if (token.isNotEmpty) {
         prefs.setToken(token);
-        // prefs.setRefreshToken(refreshToken);
+        prefs.setRefreshToken(refreshToken);
       }
     }
   }

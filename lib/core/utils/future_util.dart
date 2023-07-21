@@ -1,11 +1,13 @@
+import 'package:bloc_skeleton/core/data/remote/responses/error_response.dart';
 import 'package:bloc_skeleton/core/domain/models/error_dto.dart';
 import 'package:bloc_skeleton/core/domain/models/error_type.dart';
-import 'package:bloc_skeleton/core/data/remote/responses/error_response.dart';
 import 'package:bloc_skeleton/core/utils/typedef_util.dart';
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 
-FutureOrError<T> callOrError<T>(Future<T> Function() block,) async {
+FutureOrError<T> callOrError<T>(
+  Future<T> Function() block,
+) async {
   try {
     return Right(await block());
   } on DioError catch (e) {

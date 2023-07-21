@@ -5,5 +5,4 @@ import 'package:bloc_skeleton/src/auth/data/remote/responses/auth_user_response.
 
 abstract class AuthRepository {
   FutureOrError<BaseResponse<AuthUserResponse>> login(AuthLoginRequest request);
-  
 }

@@ -10,6 +10,10 @@ part 'auth_service.g.dart';
 abstract class AuthService {
   factory AuthService(Dio dio) => _AuthService(dio);
 
+  // @POST('/login')
+  // Future<BaseResponse<AuthUserResponse>> login(
+  //     @Body() AuthLoginRequest request);
+
   @POST('/login')
   Future<BaseResponse<AuthUserResponse>> login(
       @Body() AuthLoginRequest request);

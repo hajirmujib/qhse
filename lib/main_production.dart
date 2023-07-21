@@ -4,7 +4,6 @@ import 'package:bloc_skeleton/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'app.dart';
 import 'flavors.dart';
 
 void main() async {

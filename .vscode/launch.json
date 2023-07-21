@@ -21,6 +21,16 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
-        }
+        },
+        {
+            "name": "qhse (staging mode)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_staging.dart",
+            "args": [
+              "--flavor",
+              "staging"
+            ]
+          }
     ]
 }

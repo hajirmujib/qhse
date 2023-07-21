@@ -28,47 +28,53 @@ class AuthLoginBloc extends Bloc<AuthLoginEvent, AuthLoginState> {
     emit(const AuthLoginInitialState());
   }
 
-  // String getSavedNIK() {
-  //   return preferences.getUsername() ?? '';
-  // }
+  String getSavedNIK() {
+    return preferences.getUsername() ?? '';
+  }
 
-  // String getSavedPassword() {
-  //   return preferences.getPassword() ?? '';
-  // }
+  String getSavedPassword() {
+    return preferences.getPassword() ?? '';
+  }
+
+ 
 
   void _onLoginProceed(
     AuthLoginProceedEvent event,
     Emitter<AuthLoginState> emit,
   ) async {
     emit(AuthLoginLoadingState(stateData));
-    // if(event.isPasswordSaved) {
-    //   await preferences.setUsername(event.email);
-    //   await preferences.setPassword(event.password);
-    // } else {
-    //   await preferences.setUsername("");
-    //   await preferences.setPassword("");
-    // }
+    if (event.isPasswordSaved) {
+      await preferences.setUsername(event.email);
+      await preferences.setPassword(event.password);
+    } else {
+      await preferences.setUsername("");
+      await preferences.setPassword("");
+    }
 
     var request = AuthLoginRequest(
       nik: event.email,
       password: event.password,
     );
-   
+
     var result = await authLoginUseCase.execute(request);
 
     result.fold((ErrorDto error) {
       emit(AuthLoginFailedState(stateData.copyWith(error: error)));
     }, (AuthUserDto user) {
-      // preferences.setUserId(user.id);
-      // preferences.setRoleId(user.role);
+      preferences.setUserId(user.id);
+      preferences.setRoleId(user.role);
 
-      // preferences.setName(user.name);
-      // preferences.setNik(user.nik);
-      // preferences.setProjectSite(user.siteLocation);
-      emit(AuthLoginSuccessState(stateData.copyWith(
-        user: user,
-        error: null,
-      )));
+      preferences.setName(user.name);
+      preferences.setNik(user.nik);
+      preferences.setProjectSite(user.siteLocation);
+      emit(
+        AuthLoginSuccessState(
+          stateData.copyWith(
+            user: user,
+            error: null,
+          ),
+        ),
+      );
     });
   }
 }
